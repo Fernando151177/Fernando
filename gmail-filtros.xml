@@ -1,0 +1,124 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<feed xmlns='http://www.w3.org/2005/Atom' xmlns:apps='http://schemas.google.com/apps/2006'>
+  <title>Mail Filters</title>
+
+  <!-- SUPERMERCADO -->
+  <entry>
+    <category term='filter'/>
+    <apps:property name='from' value='ticket_digital@mail.mercadona.com'/>
+    <apps:property name='label' value='SUPERMERCADO'/>
+    <apps:property name='shouldArchive' value='true'/>
+  </entry>
+  <entry>
+    <category term='filter'/>
+    <apps:property name='hasTheWord' value='from:hello@splitwise.com subject:Mercadona'/>
+    <apps:property name='label' value='SUPERMERCADO'/>
+    <apps:property name='shouldArchive' value='true'/>
+  </entry>
+
+  <!-- SPLITWISE (resto de gastos; los avisos de inicio de sesion se quedan en bandeja) -->
+  <entry>
+    <category term='filter'/>
+    <apps:property name='hasTheWord' value='from:hello@splitwise.com -subject:Mercadona -subject:"inicio de sesión"'/>
+    <apps:property name='label' value='FINANZAS'/>
+    <apps:property name='shouldArchive' value='true'/>
+  </entry>
+
+  <!-- COMPRAS -->
+  <entry>
+    <category term='filter'/>
+    <apps:property name='from' value='notice.aliexpress.com'/>
+    <apps:property name='label' value='COMPRAS'/>
+    <apps:property name='shouldArchive' value='true'/>
+  </entry>
+  <entry>
+    <category term='filter'/>
+    <apps:property name='hasTheWord' value='from:(shopifyemail.com OR gls-spain.com OR ecoscooting.com OR closerlogistics.com)'/>
+    <apps:property name='label' value='COMPRAS'/>
+    <apps:property name='shouldArchive' value='true'/>
+  </entry>
+
+  <!-- FINANZAS/FACTURAS -->
+  <entry>
+    <category term='filter'/>
+    <apps:property name='hasTheWord' value='from:stripe.com subject:receipt'/>
+    <apps:property name='label' value='FINANZAS/FACTURAS'/>
+    <apps:property name='shouldArchive' value='true'/>
+  </entry>
+  <entry>
+    <category term='filter'/>
+    <apps:property name='from' value='email.o2online.es'/>
+    <apps:property name='label' value='FINANZAS/FACTURAS'/>
+    <apps:property name='shouldArchive' value='true'/>
+  </entry>
+
+  <!-- FINANZAS (informativo: se archiva) -->
+  <entry>
+    <category term='filter'/>
+    <apps:property name='from' value='bbva@informes.bbva.com'/>
+    <apps:property name='label' value='FINANZAS'/>
+    <apps:property name='shouldArchive' value='true'/>
+  </entry>
+  <entry>
+    <category term='filter'/>
+    <apps:property name='from' value='comunicaciones@myinvestor.es'/>
+    <apps:property name='label' value='FINANZAS'/>
+    <apps:property name='shouldArchive' value='true'/>
+  </entry>
+  <!-- Revolut: solo etiqueta, se queda en bandeja (puede traer avisos de seguridad o pagos) -->
+  <entry>
+    <category term='filter'/>
+    <apps:property name='from' value='no-reply@revolut.com'/>
+    <apps:property name='label' value='FINANZAS'/>
+  </entry>
+
+  <!-- DEUDAS Y SEGUROS: SOLO etiqueta, NUNCA se archivan (plazos y dinero) -->
+  <entry>
+    <category term='filter'/>
+    <apps:property name='from' value='notificaciones-bbva@bbva.com'/>
+    <apps:property name='label' value='FINANZAS/PRESTAMOS'/>
+  </entry>
+  <entry>
+    <category term='filter'/>
+    <apps:property name='from' value='c.cofidis.es'/>
+    <apps:property name='label' value='FINANZAS/PRESTAMOS'/>
+  </entry>
+  <entry>
+    <category term='filter'/>
+    <apps:property name='from' value='OficinaVirtual.CIR@cir.bde.es'/>
+    <apps:property name='label' value='FINANZAS/PRESTAMOS'/>
+  </entry>
+  <entry>
+    <category term='filter'/>
+    <apps:property name='from' value='abogaliance.com'/>
+    <apps:property name='label' value='ABOGADO/DEUDA'/>
+  </entry>
+  <entry>
+    <category term='filter'/>
+    <apps:property name='from' value='noresponder@mutua.es'/>
+    <apps:property name='label' value='FINANZAS/SEGUROS'/>
+  </entry>
+
+  <!-- VIAJES -->
+  <entry>
+    <category term='filter'/>
+    <apps:property name='hasTheWord' value='from:(booking.com OR ticketing.motogp-portugal.com OR autodromodoalgarve.com)'/>
+    <apps:property name='label' value='VIAJES'/>
+    <apps:property name='shouldArchive' value='true'/>
+  </entry>
+
+  <!-- PROYECTOS -->
+  <entry>
+    <category term='filter'/>
+    <apps:property name='from' value='supabase.com'/>
+    <apps:property name='label' value='PROYECTOS'/>
+    <apps:property name='shouldArchive' value='true'/>
+  </entry>
+
+  <!-- Inditex RRHH -->
+  <entry>
+    <category term='filter'/>
+    <apps:property name='from' value='recursoshumanosplm@inditex.com'/>
+    <apps:property name='label' value='Inditex/RRHH'/>
+  </entry>
+</feed>
