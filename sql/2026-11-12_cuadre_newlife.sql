@@ -52,17 +52,17 @@ update public.transactions
 -- 2.2 Comisión de 5,80 € (misma cuenta 2000-902, como la comisión de 15,00 del 24/09). Esperado: 1 transacción, 2 apuntes.
 with t as (
   insert into public.transactions (date, description, user_id)
-  select '2026-10-30', 'Comisión amortización anticipada BBVA NUEVO', 'a6fd07ad-06e4-41cb-8226-0747c24a6543'
+  select '2026-10-30', 'Comisión amortización anticipada BBVA NUEVO', 'a6fd07ad-06e4-41cb-8226-0747c24a6543'::uuid
    where not exists (select 1 from public.transactions
                       where date = '2026-10-30' and description like 'Comisión amortización anticipada%')
   returning id
 )
 insert into public.journal_entries (transaction_id, account_id, amount, memo, user_id)
 select t.id, (select id from public.accounts where code = '1000'), -5.80,
-       'Comisión amortización anticipada BBVA NUEVO', 'a6fd07ad-06e4-41cb-8226-0747c24a6543' from t
+       'Comisión amortización anticipada BBVA NUEVO', 'a6fd07ad-06e4-41cb-8226-0747c24a6543'::uuid from t
 union all
 select t.id, (select id from public.accounts where code = '2000-902'), 5.80,
-       'Comisión amortización anticipada BBVA NUEVO', 'a6fd07ad-06e4-41cb-8226-0747c24a6543' from t;
+       'Comisión amortización anticipada BBVA NUEVO', 'a6fd07ad-06e4-41cb-8226-0747c24a6543'::uuid from t;
 
 -- 2.3 loan_payments: era "cuota" de 588,40; es amortización de 582,60. Esperado: 1 fila.
 update public.loan_payments
@@ -73,7 +73,7 @@ update public.loan_payments
 
 -- 2.4 amortizaciones_extra: registrar la ejecutada. Esperado: 1 fila.
 insert into public.amortizaciones_extra (user_id, loan_id, fecha, importe, ejecutado, estado_dato)
-select 'a6fd07ad-06e4-41cb-8226-0747c24a6543', 'a8d3caaa-0b35-475b-b8d4-a642a42491a4',
+select 'a6fd07ad-06e4-41cb-8226-0747c24a6543'::uuid, 'a8d3caaa-0b35-475b-b8d4-a642a42491a4'::uuid,
        '2026-10-30', 582.60, true, 'verificado'
  where not exists (select 1 from public.amortizaciones_extra
                     where loan_id = 'a8d3caaa-0b35-475b-b8d4-a642a42491a4' and fecha = '2026-10-30');
@@ -98,15 +98,15 @@ update public.transactions
 -- 3.3 Añadir el seguro de febrero (BBVA 02/03/2026, V). Esperado: 1 transacción, 2 apuntes.
 with t as (
   insert into public.transactions (date, description, user_id)
-  select '2026-03-02', 'SEGURO MINI', 'a6fd07ad-06e4-41cb-8226-0747c24a6543'
+  select '2026-03-02', 'SEGURO MINI', 'a6fd07ad-06e4-41cb-8226-0747c24a6543'::uuid
    where not exists (select 1 from public.transactions
                       where date = '2026-03-02' and description ilike 'SEGURO MINI%')
   returning id
 )
 insert into public.journal_entries (transaction_id, account_id, amount, memo, user_id)
-select t.id, (select id from public.accounts where code = '1000'), -51.80, 'SEGURO MINI', 'a6fd07ad-06e4-41cb-8226-0747c24a6543' from t
+select t.id, (select id from public.accounts where code = '1000'), -51.80, 'SEGURO MINI', 'a6fd07ad-06e4-41cb-8226-0747c24a6543'::uuid from t
 union all
-select t.id, (select id from public.accounts where code = '5009-1'), 51.80, 'SEGURO MINI', 'a6fd07ad-06e4-41cb-8226-0747c24a6543' from t;
+select t.id, (select id from public.accounts where code = '5009-1'), 51.80, 'SEGURO MINI', 'a6fd07ad-06e4-41cb-8226-0747c24a6543'::uuid from t;
 
 -- ============ BLOQUE 4 · THERMOMIX (Cofidis) ============
 -- 1.492,47 - 20 x 31,10 = 870,47 (20 cuotas en loan_payments; la de noviembre es R, sin extracto). Esperado: 1 fila.
